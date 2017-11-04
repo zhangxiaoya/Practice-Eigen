@@ -3,6 +3,8 @@
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
+using Eigen::Matrix3d;
+using Eigen::Vector3d;
 
 // example 1
 //int main(int argc, char* argv[])
@@ -18,14 +20,26 @@ using Eigen::VectorXd;
 //}
 
 // example 2 first part
+//int main(int argc, char* argv[])
+//{
+//	MatrixXd m = MatrixXd::Random(3, 3);
+//	m = (m + MatrixXd::Constant(3, 3, 1.2)) * 50;
+//	std::cout << "m = " << std::endl << m << std::endl;
+//	VectorXd v(3);
+//	v << 1, 2, 3;
+//	std::cout << "m * v = " << std::endl << m * v << std::endl;
+//	system("Pause");
+//	return 0;
+//}
+
+// example 2 second part
 int main(int argc, char* argv[])
 {
-	MatrixXd m = MatrixXd::Random(3, 3);
-	m = (m + MatrixXd::Constant(3, 3, 1.2)) * 50;
-	std::cout << "m = " << std::endl << m << std::endl;
-	VectorXd v(3);
-	v << 1, 2, 3;
-	std::cout << "m * v = " << std::endl << m * v << std::endl;
+	Matrix3d m = Matrix3d::Random();
+	m = (m + Matrix3d::Constant(1.2)) * 50;
+	std::cout << " m = " << std::endl << m << std::endl;
+	Vector3d v(1, 2, 3);
+	std::cout << " m * v = " << std::endl << m*v << std::endl;
 	system("Pause");
 	return 0;
 }
