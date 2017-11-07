@@ -207,7 +207,7 @@ and after being transposed:
 
 There is also the adjointInPlace() function for complex matrices.
 
-Matrix-matrix and matrix-vector multiplication
+## Matrix-matrix and matrix-vector multiplication
 
 Matrix-matrix multiplication is again done with operator*. Since vectors are a special case of matrices, they are implicitly handled there too, so matrix-vector product is really just a special case of matrix-matrix product, and so is vector-vector outer product. Thus, all these cases are handled by just two operators:
 
@@ -259,7 +259,7 @@ Now mat is mat:
 15 22
 ```
 
-Note: if you read the above paragraph on expression templates and are worried that doing m=m*m might cause aliasing issues, be reassured for now: Eigen treats matrix multiplication as a special case and takes care of introducing a temporary here, so it will compile m=m*m as:
+**Note:** if you read the above paragraph on expression templates and are worried that doing m=m*m might cause aliasing issues, be reassured for now: Eigen treats matrix multiplication as a special case and takes care of introducing a temporary here, so it will compile m=m*m as:
 
 ```C++
 tmp = m*m;
