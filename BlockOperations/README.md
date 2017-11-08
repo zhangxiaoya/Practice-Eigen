@@ -116,14 +116,16 @@ The rest of this page describes these specialized methods.
 
 Individual columns and rows are special cases of blocks. Eigen provides methods to easily address them: .col() and .row().
 
-Block operation	Method
-ith row *	
-matrix.row(i);
-jth column *	
-matrix.col(j);
+| Block operation | Method |
+| --- | --- |
+| i^th row * | matrix.row(i); |
+| j^th column * | matrix.col(j); |
+
 The argument for col() and row() is the index of the column or row to be accessed. As always in Eigen, indices start at 0.
 
-Example:	Output:
+Example:
+
+```C++
 #include <Eigen/Dense>
 #include <iostream>
 using namespace std;
@@ -139,6 +141,11 @@ int main()
   cout << "After adding 3 times the first column into the third column, the matrix m is:\n";
   cout << m << endl;
 }
+```
+
+Output:
+
+```C++
 Here is the matrix m:
 1 2 3
 4 5 6
@@ -148,44 +155,32 @@ After adding 3 times the first column into the third column, the matrix m is:
  1  2  6
  4  5 18
  7  8 30
+```
+
 That example also demonstrates that block expressions (here columns) can be used in arithmetic like any other expression.
 
-Corner-related operations
+## Corner-related operations
 
 Eigen also provides special methods for blocks that are flushed against one of the corners or sides of a matrix or array. For instance, .topLeftCorner() can be used to refer to a block in the top-left corner of a matrix.
 
 The different possibilities are summarized in the following table:
 
-Block operation	Version constructing a 
-dynamic-size block expression	Version constructing a 
-fixed-size block expression
-Top-left p by q block *	
-matrix.topLeftCorner(p,q);
-matrix.topLeftCorner<p,q>();
-Bottom-left p by q block *	
-matrix.bottomLeftCorner(p,q);
-matrix.bottomLeftCorner<p,q>();
-Top-right p by q block *	
-matrix.topRightCorner(p,q);
-matrix.topRightCorner<p,q>();
-Bottom-right p by q block *	
-matrix.bottomRightCorner(p,q);
-matrix.bottomRightCorner<p,q>();
-Block containing the first q rows *	
-matrix.topRows(q);
-matrix.topRows<q>();
-Block containing the last q rows *	
-matrix.bottomRows(q);
-matrix.bottomRows<q>();
-Block containing the first p columns *	
-matrix.leftCols(p);
-matrix.leftCols<p>();
-Block containing the last q columns *	
-matrix.rightCols(q);
-matrix.rightCols<q>();
+| Block operation |Version constructing a dynamic-size block expression | Version constructing a fixed-size block expression |
+| --- | --- | ---|
+| Top-left p by q block * | `matrix.topLeftCorner(p,q);` | `matrix.topLeftCorner<p,q>();`|
+| Bottom-left p by q block * | `matrix.bottomLeftCorner(p,q);` | `matrix.bottomLeftCorner<p,q>();`|
+| Top-right p by q block * | `matrix.topRightCorner(p,q);` | `matrix.topRightCorner<p,q>();`|
+| Bottom-right p by q block * | `matrix.bottomRightCorner(p,q);` | `matrix.bottomRightCorner<p,q>();`|
+| Block containing the first q rows * | `matrix.topRows(q);` | `matrix.topRows<q>();`|
+| Block containing the last q rows * | `matrix.bottomRows(q);` | `matrix.bottomRows<q>();`|
+| Block containing the first p columns * | `matrix.leftCols(p);` | `matrix.leftCols<p>();` |
+| Block containing the last q columns * | `matrix.rightCols(q);` | `matrix.rightCols<q>();`|
+
 Here is a simple example illustrating the use of the operations presented above:
 
-Example:	Output:
+Example:
+
+```C++
 #include <Eigen/Dense>
 #include <iostream>
 using namespace std;
@@ -201,6 +196,11 @@ int main()
   m.topLeftCorner(1,3) = m.bottomRightCorner(3,1).transpose();
   cout << "After assignment, m = " << endl << m << endl;
 }
+```
+
+Output:
+
+```C++
 m.leftCols(2) =
  1  2
  5  6
@@ -216,25 +216,23 @@ After assignment, m =
  5  6  7  8
  9 10 11 12
 13 14 15 16
-Block operations for vectors
+```
+
+## Block operations for vectors
 
 Eigen also provides a set of block operations designed specifically for the special case of vectors and one-dimensional arrays:
 
-Block operation	Version constructing a 
-dynamic-size block expression	Version constructing a 
-fixed-size block expression
-Block containing the first n elements *	
-vector.head(n);
-vector.head<n>();
-Block containing the last n elements *	
-vector.tail(n);
-vector.tail<n>();
-Block containing n elements, starting at position i *	
-vector.segment(i,n);
-vector.segment<n>(i);
+| Block operation | Version constructing a dynamic-size block expression | Version constructing a fixed-size block expression|
+| --- | --- | --- |
+| Block containing the first n elements * | `vector.head(n);` | `vector.head<n>();`|
+| Block containing the last n elements * | `vector.tail(n);` | `vector.tail<n>();`|
+| Block containing n elements, starting at position i *| `vector.segment(i,n);` |`vector.segment<n>(i);`|
+
 An example is presented below:
 
-Example:	Output:
+Example:
+
+```C++
 #include <Eigen/Dense>
 #include <iostream>
 using namespace std;
@@ -247,6 +245,11 @@ int main()
   v.segment(1,4) *= 2;
   cout << "after 'v.segment(1,4) *= 2', v =" << endl << v << endl;
 }
+```
+
+Output:
+
+```C++
 v.head(3) =
 1
 2
@@ -264,3 +267,4 @@ after 'v.segment(1,4) *= 2', v =
  8
 10
  6
+```
