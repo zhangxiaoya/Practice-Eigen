@@ -6,6 +6,7 @@
 1. [MatrixClass](https://github.com/zhangxiaoya/Practice-Eigen/blob/master/MatrixClass/README.md)
 3. [Matrix and Vector Arithmetic](https://github.com/zhangxiaoya/Practice-Eigen/blob/master/Arithmetic/README.md)
 4. [Block Operations](https://github.com/zhangxiaoya/Practice-Eigen/blob/master/BlockOperations/README.md)
+5. [Advanced initialization](https://github.com/zhangxiaoya/Practice-Eigen/blob/master/AdvancedInitial/README.md)
 
 ## References
 
