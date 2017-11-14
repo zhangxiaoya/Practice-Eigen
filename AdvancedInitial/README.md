@@ -130,7 +130,9 @@ A two-dimensional dynamic-size array:
 
 Similarly, the static method Constant(value) sets all coefficients to value. If the size of the object needs to be specified, the additional arguments go before the value argument, as in MatrixXd::Constant(rows, cols, value). The method Random() fills the matrix or array with random coefficients. The identity matrix can be obtained by calling Identity(); this method is only available for Matrix, not for Array, because "identity matrix" is a linear algebra concept. The method LinSpaced(size, low, high) is only available for vectors and one-dimensional arrays; it yields a vector of the specified size whose coefficients are equally spaced between low and high. The method LinSpaced() is illustrated in the following example, which prints a table with angles in degrees, the corresponding angle in radians, and their sine and cosine.
 
-Example:	Output:
+Example:
+
+```C++
 ArrayXXf table(10, 4);
 table.col(0) = ArrayXf::LinSpaced(10, 0, 90);
 table.col(1) = M_PI / 180 * table.col(0);
@@ -138,6 +140,10 @@ table.col(2) = table.col(1).sin();
 table.col(3) = table.col(1).cos();
 std::cout << "  Degrees   Radians      Sine    Cosine\n";
 std::cout << table << std::endl;
+```
+
+Output:
+```C++
   Degrees   Radians      Sine    Cosine
         0         0         0         1
        10     0.175     0.174     0.985
@@ -149,9 +155,12 @@ std::cout << table << std::endl;
        70      1.22      0.94     0.342
        80       1.4     0.985     0.174
        90      1.57         1 -4.37e-08
+```
 This example shows that objects like the ones returned by LinSpaced() can be assigned to variables (and expressions). Eigen defines utility functions like setZero(), MatrixBase::setIdentity() and DenseBase::setLinSpaced() to do this conveniently. The following example contrasts three ways to construct the matrix $ J = \bigl[ \begin{smallmatrix} O & I \\ I & O \end{smallmatrix} \bigr] $: using static methods and assignment, using static methods and the comma-initializer, or using the setXxx() methods.
 
-Example:	Output:
+Example:
+
+```C++
 const int size = 6;
 MatrixXd mat1(size, size);
 mat1.topLeftCorner(size/2, size/2)     = MatrixXd::Zero(size/2, size/2);
@@ -169,6 +178,10 @@ MatrixXd mat3(size, size);
 mat3 << MatrixXd::Zero(size/2, size/2), MatrixXd::Identity(size/2, size/2),
         MatrixXd::Identity(size/2, size/2), MatrixXd::Zero(size/2, size/2);
 std::cout << mat3 << std::endl;
+```
+
+Output:
+```C++
 0 0 0 1 0 0
 0 0 0 0 1 0
 0 0 0 0 0 1
@@ -189,15 +202,19 @@ std::cout << mat3 << std::endl;
 1 0 0 0 0 0
 0 1 0 0 0 0
 0 0 1 0 0 0
+```
+
 A summary of all pre-defined matrix, vector and array objects can be found in the Quick reference guide.
 
-Usage as temporary objects
+## Usage as temporary objects
 
 As shown above, static methods as Zero() and Constant() can be used to initialize variables at the time of declaration or at the right-hand side of an assignment operator. You can think of these methods as returning a matrix or array; in fact, they return so-called expression objects which evaluate to a matrix or array when needed, so that this syntax does not incur any overhead.
 
 These expressions can also be used as a temporary object. The second example in the Getting started guide, which we reproduce here, already illustrates this.
 
-Example:	Output:
+Example:
+
+```C++
 #include <iostream>
 #include <Eigen/Dense>
 using namespace Eigen;
@@ -211,6 +228,11 @@ int main()
   v << 1, 2, 3;
   cout << "m * v =" << endl << m * v << endl;
 }
+```
+
+Output:
+
+```C++
 m =
   94 89.8 43.5
 49.4  101 86.8
@@ -219,19 +241,28 @@ m * v =
 404
 512
 261
+```
+
 The expression m + MatrixXf::Constant(3,3,1.2) constructs the 3-by-3 matrix expression with all its coefficients equal to 1.2 plus the corresponding coefficient of m.
 
 The comma-initializer, too, can also be used to construct temporary objects. The following example constructs a random matrix of size 2-by-3, and then multiplies this matrix on the left with $ \bigl[ \begin{smallmatrix} 0 & 1 \\ 1 & 0 \end{smallmatrix} \bigr] $.
 
-Example:	Output:
+Example:
+```C++
 MatrixXf mat = MatrixXf::Random(2, 3);
 std::cout << mat << std::endl << std::endl;
 mat = (MatrixXf(2,2) << 0, 1, 1, 0).finished() * mat;
 std::cout << mat << std::endl;
+```
+
+Output:
+
+```C++
   0.68  0.566  0.823
 -0.211  0.597 -0.605
 
 -0.211  0.597 -0.605
   0.68  0.566  0.823
+```
+
 The finished() method is necessary here to get the actual matrix object once the comma initialization of our temporary submatrix is done.
-
