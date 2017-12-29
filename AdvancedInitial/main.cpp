@@ -42,20 +42,70 @@ using namespace Eigen;
 //}
 
 // Special matrices and arrays
+//int main(int argc, char* argv[])
+//{
+//	std::cout << "A fixed-size array :\n";
+//	Array33f a1 = Array33f::Zero();
+//	std::cout <<  a1<<std::endl;
+//
+//	std::cout << "A one-dimensional dynamic-size array:\n";
+//	ArrayXf a2 = ArrayXf::Zero(3);
+//	std::cout << a2<<std::endl;
+//
+//	std::cout << "A two-dimensional dynamic-size array:\n";
+//	ArrayXXf a3 = ArrayXXf::Zero(3,4);
+//	std::cout << a3<<std::endl;
+//
+//	double M_PI = 3.14;
+//	ArrayXXf table(10, 4);
+//	table.col(0) = ArrayXf::LinSpaced(10, 0, 90);
+//	table.col(1) = M_PI / 180 * table.col(0);
+//	table.col(2) = table.col(1).sin();
+//	table.col(3) = table.col(1).cos();
+//	std::cout << " Degress Radians Sine Coise\n";
+//	std::cout << table<< std::endl;
+//
+//	const int size = 6;
+//	MatrixXd mat1(size, size);
+//	mat1.topLeftCorner(size / 2, size / 2) = MatrixXd::Zero(size / 2, size / 2);
+//	mat1.topRightCorner(size / 2, size / 2) = MatrixXd::Identity(size / 2, size / 2);
+//	mat1.bottomLeftCorner(size / 2, size / 2) = MatrixXd::Identity(size / 2, size / 2);
+//	mat1.bottomRightCorner(size / 2, size / 2) = MatrixXd::Zero(size / 2, size / 2);
+//
+//	std::cout << mat1 << std::endl;
+//	std::cout << std::endl;
+//
+//	MatrixXd mat2(size, size);
+//	mat2.topLeftCorner(size / 2, size / 2).setZero();
+//	mat2.topRightCorner(size / 2, size / 2).setIdentity();
+//	mat2.bottomLeftCorner(size / 2, size / 2).setIdentity();
+//	mat2.bottomRightCorner(size / 2, size / 2).setZero();
+//	std::cout << mat2<< std::endl<<std::endl;
+//
+//	MatrixXd mat3(size, size);
+//	mat3 << MatrixXd::Zero(size / 2, size / 2), MatrixXd::Identity(size / 2, size / 2), MatrixXd::Identity(size / 2, size / 2), MatrixXd::Zero(size / 2, size / 2);
+//	std::cout << mat3<< std::endl;
+//
+//	system("Pause");
+//	return 0;
+//}
+
+
+// Usage of temporary objetcs
 int main(int argc, char* argv[])
 {
-	std::cout << "A fixed-size array :\n";
-	Array33f a1 = Array33f::Zero();
-	std::cout <<  a1<<std::endl;
+	MatrixXd m = MatrixXd::Random(3, 3);
+	m = (m + MatrixXd::Constant(3, 3, 1.2) * 50);
+	std::cout << "m = " << std::endl << m << std::endl;
 
-	std::cout << "A one-dimensional dynamic-size array:\n";
-	ArrayXf a2 = ArrayXf::Zero(3);
-	std::cout << a2<<std::endl;
+	VectorXd v(3);
+	v << 1, 2, 3;
+	std::cout << "m * v = " << std::endl << m * v << std::endl;
 
-	std::cout << "A two-dimensional dynamic-size array:\n";
-	ArrayXXf a3 = ArrayXXf::Zero(3,4);
-	std::cout << a3<<std::endl;
-
+	MatrixXf mat = MatrixXf::Random(2, 3);
+	std::cout << mat<<std::endl<< std::endl;
+	mat = (MatrixXf(2, 2) << 1, 2, 3, 4).finished() * mat;
+	std::cout << mat << std::endl;
 	system("Pause");
 	return 0;
 }
