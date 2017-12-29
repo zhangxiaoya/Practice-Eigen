@@ -10,7 +10,7 @@
 *.sln.docstates
 
 # props
-*.props
+#*.props
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
