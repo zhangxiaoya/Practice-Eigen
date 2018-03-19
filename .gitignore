@@ -10,6 +10,7 @@
 *.sln.docstates
 
 build/
+Sophus/
 
 # props
 #*.props
