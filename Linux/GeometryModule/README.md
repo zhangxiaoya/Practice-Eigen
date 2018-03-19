@@ -71,8 +71,15 @@ Eigen允许使用通用的API进行变换操作，比如矩阵的乘法：
 
 等等。。。
 
+## 更多
+更详细的关于Eigen Geometry模块的参考在[这里](http://eigen.tuxfamily.org/dox/group__Geometry__Module.html)
 
-
-
-       
-
+这个模块包含了：
+1. 固定大小的其次变换
+2. 变换、放缩、2D和3D的旋转
+3. 四元数
+4. 叉乘
+5. 正交向量生成
+6. 一些线性构成
+7. 轴对齐Bounding Box
+8. 最小二乘变换
