@@ -9,6 +9,8 @@
 *.userosscache
 *.sln.docstates
 
+build/
+
 # props
 #*.props
 
