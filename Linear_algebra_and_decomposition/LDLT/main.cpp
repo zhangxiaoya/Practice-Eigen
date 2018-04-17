@@ -14,6 +14,9 @@ int main(int argc, char* argv[])
 	std::cout << "Vector b :\n" << b << std::endl;
 	Eigen::Vector3f x = A.ldlt().solve(b);
 	std::cout << "Result x :\n" << x << std::endl;
+
+	double relative_error = (A*x - b).norm() / b.norm();
+	std::cout << "Relative Error is " << relative_error << std::endl;
 	system("Pause");
 	return 0;
 }
