@@ -4,9 +4,9 @@
 $$ Ax=b$$
 Eigen提供了若干进行矩阵分解的类，如下表所示：
 
- Decomposition | Method | Requirements on the matrix | Speed (small-to-medium) | Speed (large)	|Accuracy
- - | - | - | - | - | - 
- - PartialPivLU	| partialPivLu()	| Invertible |	++ |	++ |	+
+ | Decomposition | Method | Requirements on the matrix | Speed (small-to-medium) | Speed (large)	|Accuracy |
+ | - | - | - | - | - | - |
+PartialPivLU	| partialPivLu()	| Invertible |	++ |	++ |	+
 FullPivLU	| fullPivLu()	| None|	-|	- | -	| +++
 HouseholderQR|	householderQr()	None|	++	| ++ |	+
 ColPivHouseholderQR	 | colPivHouseholderQr() |	None	| +	| - |	+++
