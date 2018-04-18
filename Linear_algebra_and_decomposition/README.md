@@ -1,7 +1,9 @@
 # 使用Eigen进行矩阵分解和求解线性问题
 
 使用Eigen解决矩阵分解问题，顺便解决线性方程问题。
-$$ Ax=b$$
+
+$$ Ax=b $$
+
 Eigen提供了若干进行矩阵分解的类，如下表所示：
 
  | Decomposition | Method | Requirements on the matrix | Speed (small-to-medium) | Speed (large)	|Accuracy |
